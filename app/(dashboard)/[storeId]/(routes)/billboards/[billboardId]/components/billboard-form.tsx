@@ -2,7 +2,6 @@
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
 import { Billboard } from "@prisma/client";
 import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
@@ -83,7 +82,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
         `/api/${params.storeId}/billboards/${params.billboardId}`
       );
       router.refresh();
-      router.push("/");
+      router.push(`/${params.storeId}/billboards`);
       toast.success("Billboard deleted.");
     } catch (error) {
       toast.error(
@@ -118,7 +117,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
           </Button>
         )}
       </div>
-      <Separator />
+      
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -166,7 +165,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 };
